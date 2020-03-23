@@ -1,0 +1,89 @@
+﻿
+@model List<TaskJobDto>
+@{
+    ViewData["Title"] = "作业列表";
+}
+
+
+<div class="container">
+    <div style="padding:0px 10px;">
+            <a class="layui-btn layui-btn-sm layui-btn-normal" href="javascript:void(0);" onclick="AddOrEdit()">
+                <i class="layui-icon layui-icon-tianjia2"></i>添加作业
+            </a>
+        </div>
+    <table class="layui-table" id="list">
+        <thead>
+            <tr>
+                <th style="text-align:center;">#</th>
+                <th>作业ID</th>
+                <th>作业名</th>
+                <th>作业描述</th>
+                <th>Api</th>
+                <th>Corn表达式</th>
+                <th>上次执行时间</th>
+                <th>执行状态</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ int index = 1; var JobStatusList = ViewData["JobStatusList"] as Dictionary<int, string>;}
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td style="width:20px; text-align:center;">@(index++)</td>
+                <td>@item.JobID</td>
+                <td>@item.JobName</td>
+                <td>@item.JobDesc</td>
+                <td>@item.ApiUrl</td>
+                <td>@item.CronExpression</td>
+                <td>@item.LastExecuteTime</td>
+                <td>@item.StatusName</td>
+                <td>
+                    @if (item.Status == 0)
+                    {
+                        <a class="layui-btn layui-btn-danger layui-btn-xs" onclick="javascript:SwitchStatus(@item.JobID,2);"><i class="layui-icon layui-icon-delete"></i>暂停</a>
+                    }
+                    else if (item.Status == 1)
+                    {
+                        <a class="layui-btn layui-btn-danger layui-btn-xs" onclick="javascript:SwitchStatus(@item.JobID,1);"><i class="layui-icon layui-icon-delete"></i>启动</a>
+                    }
+                    else if (item.Status == 3)
+                    {
+                        <a class="layui-btn layui-btn-danger layui-btn-xs" onclick="javascript:SwitchStatus(@item.JobID,3);"><i class="layui-icon layui-icon-delete"></i>重启</a>
+                    }
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" onclick="AddOrEdit(@item.JobID)"><i class="layui-icon layui-icon-bianji"></i>编辑</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" onclick="javascript:Delete('/TaskJob/Delete/@item.JobID');"><i class="layui-icon layui-icon-delete"></i>删除</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    $(function () {
+        ShowLoading();
+        setTimeout(CloseLoading(), 3000);
+    });
+    function AddOrEdit(id) {
+        if (id == undefined) {
+            ShowMaxWindow('===添加作业===', '/TaskJob/Add');
+        }
+        else {
+            ShowMaxWindow('===编辑作业===', '/TaskJob/Add/' + id);
+        }
+    }
+    function SwitchStatus(id, status) {
+        DoAjax('/TaskJob/SwitchStatus', { 'JobId': id, 'Status': status }, 'Post',
+            function (result) {
+                if (result.IsOk) {
+                    layer.alert(result.Msg, { icon: 1, shadeClose: false, title: '操作提示' }, function () {
+                        location.reload();
+                    });
+                }
+                else {
+                    layer.alert(result.Msg, { icon: 2, shadeClose: true, title: '操作提示' });
+                }
+            }
+        );
+    }
+</script>

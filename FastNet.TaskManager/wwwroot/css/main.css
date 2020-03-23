@@ -1,0 +1,173 @@
+
+/*login page*/
+.login-main {
+    width: 375px;
+    margin: 150px auto;
+}
+
+.login-main .logo-name {
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: #000;
+    text-align: center;
+}
+
+.login-main p {
+    font-size: 14px;
+    color: #999;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-main .layui-input-inline {
+    width: 265px;
+    margin-right: 0px;
+}
+
+.layui-body {
+    top: 100px !important;
+}
+/*layui pagetabs*/
+.layui-pagetabs {
+    height: 40px;
+    line-height: 40px;
+    padding: 0 80px 0 40px;
+    background-color: #fff;
+    box-sizing: border-box;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+    position: fixed;
+    right: 0;
+    left: 200px;
+    z-index: 999;
+}
+
+.layui-pagetabs .layui-pagetabs-control {
+    position: absolute;
+    top: 0;
+    width: 40px;
+    height: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.layui-pagetabs .layui-pagetabs-control:hover {
+    background: #f6f6f6;
+}
+
+.layui-pagetabs .layui-pagetabs-prev {
+    left: 0px;
+    border-right: 1px solid #f6f6f6;
+}
+
+.layui-pagetabs .layui-pagetabs-next {
+    right: 40px;
+    border-left: 1px solid #f6f6f6;
+}
+
+.layui-pagetabs .layui-pagetabs-down {
+    right: 0px;
+    border-left: 1px solid #f6f6f6;
+}
+
+.layui-pagetabs .layui-pagetabs-nav {
+    display: none;
+    position: absolute;
+    right: 0px;
+    top: 40px;
+    min-width: 100%;
+    line-height: 28px;
+    padding: 5px 0px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.12);
+    border: 1px solid #d2d2d2;
+    background-color: #fff;
+    z-index: 100;
+    border-radius: 2px;
+    white-space: nowrap;
+}
+
+.layui-pagetabs .layui-pagetabs-nav dd {
+    padding: 5px 10px;
+}
+
+.layui-pagetabs .layui-pagetabs-nav dd:hover {
+    background: #f6f6f6;
+}
+
+.layui-pagetabs .layui-pagetabs-nav dd > a {
+    color: #666;
+    font-size: 14px;
+}
+
+.layui-pagetabs .layui-tab {
+    margin: 0px !important;
+    overflow: hidden;
+    color: #666;
+}
+
+.layui-pagetabs .layui-tab > .layui-tab-title {
+    overflow: hidden;
+}
+
+.layui-pagetabs .layui-tab[overflow] > .layui-tab-title {
+    overflow: visible;
+}
+
+.layui-pagetabs .layui-tab-title li:first-child .layui-unselect {
+    display: none;
+}
+
+.layui-pagetabs .layui-tab-title .layui-this {
+    background-color: #f6f6f6;
+}
+
+.layui-pagetabs .layui-tab-title .layui-icon {
+    margin-right: 5px;
+}
+
+.layui-pagetabs .layui-tab-title .layui-tab-bar {
+    display: none;
+}
+/*iframe*/
+.layui-iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+/*search-form*/
+.search-form {
+    margin: 10px;
+}
+
+.search-form th {
+    padding-left: 20px;
+    text-align: right;
+}
+/*post-form*/
+.post-form {
+    margin: 10px;
+}
+.post-form th,.post-form td {
+    padding:5px;
+    font-size:13px;
+    font-weight:normal;
+}
+.post-form th {
+    padding-left: 20px;
+    text-align: right;
+}
+
+/*layui-input*/
+.search-form .layui-input, .search-form .layui-btn
+.post-form .layui-input, .post-form .layui-btn {
+    height: 32px;
+    line-height: 32px;
+}
+
+/*container*/
+.container {
+    padding: 5px;
+}
+/*layui-page*/
+.layui-laypage {
+    margin: 0px !important;
+}

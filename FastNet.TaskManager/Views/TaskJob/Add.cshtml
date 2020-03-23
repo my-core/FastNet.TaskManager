@@ -1,0 +1,67 @@
+﻿
+@model TaskJobInfo
+<body>
+    
+    <form id="RoleAdd" class="layui-form layui-form-pane"
+          asp-controller="TaskJob" asp-action="Add"
+          data-ajax="true"
+          data-ajax-mode="replace"
+          data-ajax-update="#"
+          data-ajax-method="Post"
+          data-ajax-success="Callback" 
+          data-ajax-begin="ShowLoading"
+          data-ajax-complete="CloseLoading">
+
+        <table class="post-form">
+            <tr>
+                <th style="width: 150px;">任务名称：</th>
+                <td>
+                    <input id="JobID" name="JobID" type="hidden" value="@Model.JobID" />
+                    <input id="JobName" name="JobName" lay-verify="required" lay-msg="任务名不能为空" class="layui-input" type="text" value="@Model.JobName" style="width:500px;">
+                </td>
+            </tr>
+            <tr>
+                <th>任务描述：</th>
+                <td>
+                    <input id="JobDesc" name="JobDesc" class="layui-input" type="text" value="@Model.JobDesc" style="width:500px;">
+                </td>
+            </tr>
+            <tr>
+                <th>执行类名：</th>
+                <td>
+                    <input id="JobClassName" name="JobClassName" class="layui-input" type="text" value="@Model.JobClassName" style="width:500px;">
+                </td>
+            </tr>
+            <tr>
+                <th>Corn表达式：</th>
+                <td>
+                    <input id="CronExpression" name="CronExpression" class="layui-input" type="text" value="@Model.CronExpression" style="width:500px;">
+                </td>
+            </tr>
+            <tr>
+                <th>调用Url：</th>
+                <td>
+                    <input id="ApiUrl" name="ApiUrl" class="layui-input" type="text" value="@Model.ApiUrl" style="width:500px;">
+                </td>
+            </tr>           
+            <tr>
+                <th></th>
+                <td>
+                    <button id="post_btn" type="submit" class="layui-btn" lay-submit="" lay-filter="post">保 存</button>
+                    <a href="javascript:void(0)" onclick="parent.CloseWindow();" class="layui-btn layui-btn-normal">返回列表</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script>
+        layui.use(['form'], function () {
+            var form = layui.form;
+
+            //监听提交
+            form.on('submit(post)', function (data) {
+                console.log(JSON.stringify(data.field));
+                return true;
+            });
+        });
+    </script>
+</body>

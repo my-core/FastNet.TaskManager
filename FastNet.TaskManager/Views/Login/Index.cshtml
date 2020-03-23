@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "登录页面";
+}
+<style>
+    body {
+        background: #f0f0f0;
+    }
+</style>
+<div class="login-main">
+    <div>
+        <h1 class="logo-name">任务调度管理平台</h1>
+    </div>
+    <p>StockNiu</p>
+    <form class="layui-form layui-form-pane"
+          asp-controller="Login" asp-action=""
+          data-ajax="true"
+          data-ajax-mode="replace"
+          data-ajax-update=""
+          data-ajax-method="Post"
+          data-ajax-success="loginCallback"
+          data-ajax-begin="ShowLoading"
+          data-ajax-complete="CloseLoading">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户名：</label>
+            <div class="layui-input-inline">
+                <input id="UserName" name="AdminName" lay-verify="required" lay-msg="用户名不能为空" class="layui-input" type="text" value="admin">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码：</label>
+            <div class="layui-input-inline">
+                <input id="Password" name="Password" lay-verify="required" lay-msg="密码不能为空" class="layui-input" type="password" value="123">
+            </div>
+        </div>        
+        <button id="btn_login" class="layui-btn layui-btn-fluid" lay-submit="" type="submit" lay-filter="login">登录</button>
+    </form>
+</div>
+<script src="~/js/login.js"></script>
