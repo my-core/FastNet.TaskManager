@@ -1,0 +1,189 @@
+2020-04-05 23:10:16.2387|INFO|Quartz.Util.DBConnectionManager|Registering datasource 'myDS' with db provider: 'Quartz.Impl.AdoJobStore.Common.DbProvider' 
+2020-04-05 23:10:16.2704|INFO|Quartz.Impl.StdSchedulerFactory|Using object serializer: Quartz.Simpl.JsonObjectSerializer, Quartz.Serialization.Json 
+2020-04-05 23:10:17.2871|INFO|Quartz.Core.SchedulerSignalerImpl|Initialized Scheduler Signaller of type: Quartz.Core.SchedulerSignalerImpl 
+2020-04-05 23:10:17.3195|INFO|Quartz.Core.QuartzScheduler|Quartz Scheduler v.3.0.7.0 created. 
+2020-04-05 23:10:17.3683|INFO|Quartz.Impl.AdoJobStore.JobStoreTX|Using db table-based data access locking (synchronization). 
+2020-04-05 23:10:17.3683|INFO|Quartz.Impl.AdoJobStore.JobStoreTX|JobStoreTX initialized. 
+2020-04-05 23:10:17.3683|INFO|Quartz.Core.QuartzScheduler|Scheduler meta-data: Quartz Scheduler (v3.0.7.0) 'TaskScheduler' with instanceId 'bin637216962172624096'
+  Scheduler class: 'Quartz.Core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'Quartz.Simpl.DefaultThreadPool' - with 20 threads.
+  Using job-store 'Quartz.Impl.AdoJobStore.JobStoreTX' - which supports persistence. and is clustered.
+ 
+2020-04-05 23:10:17.3683|INFO|Quartz.Impl.StdSchedulerFactory|Quartz scheduler 'TaskScheduler' initialized 
+2020-04-05 23:10:17.3683|INFO|Quartz.Impl.StdSchedulerFactory|Quartz scheduler version: 3.0.7.0 
+2020-04-05 23:10:17.3683|INFO|Quartz.Core.QuartzScheduler|JobFactory set to: FastNet.TaskManager.QuartzNet.ServiceCollectionJobFactory 
+2020-04-05 23:10:22.6240|ERROR|Quartz.Impl.AdoJobStore.ClusterManager|Error managing cluster: Failed to obtain DB connection from data source 'myDS': MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host 'localhost' for user 'root' using method 'mysql_native_password' failed with message: Unknown database 'quartz'
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown database 'quartz'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.AuthenticationFailed(Exception ex)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.Authenticate(Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Authenticate(String authMethod, Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Open()
+   at MySql.Data.MySqlClient.Driver.Open()
+   at MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   at MySql.Data.MySqlClient.MySqlConnection.Open()
+   at Quartz.Impl.AdoJobStore.JobStoreSupport.GetConnection() Quartz.JobPersistenceException: Failed to obtain DB connection from data source 'myDS': MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host 'localhost' for user 'root' using method 'mysql_native_password' failed with message: Unknown database 'quartz'
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown database 'quartz'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.AuthenticationFailed(Exception ex)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.Authenticate(Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Authenticate(String authMethod, Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Open()
+   at MySql.Data.MySqlClient.Driver.Open()
+   at MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   at MySql.Data.MySqlClient.MySqlConnection.Open()
+   at Quartz.Impl.AdoJobStore.JobStoreSupport.GetConnection()
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host 'localhost' for user 'root' using method 'mysql_native_password' failed with message: Unknown database 'quartz'
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown database 'quartz'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.AuthenticationFailed(Exception ex)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.Authenticate(Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Authenticate(String authMethod, Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Open()
+   at MySql.Data.MySqlClient.Driver.Open()
+   at MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   at MySql.Data.MySqlClient.MySqlConnection.Open()
+   at Quartz.Impl.AdoJobStore.JobStoreSupport.GetConnection()
+   --- End of inner exception stack trace ---
+   at Quartz.Impl.AdoJobStore.JobStoreSupport.GetConnection()
+   at Quartz.Impl.AdoJobStore.JobStoreTX.GetNonManagedTXConnection()
+   at Quartz.Impl.AdoJobStore.JobStoreSupport.DoCheckin(Guid requestorId, CancellationToken cancellationToken)
+   at Quartz.Impl.AdoJobStore.ClusterManager.Manage() [See nested exception: MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host 'localhost' for user 'root' using method 'mysql_native_password' failed with message: Unknown database 'quartz'
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown database 'quartz'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.AuthenticationFailed(Exception ex)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.Authenticate(Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Authenticate(String authMethod, Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Open()
+   at MySql.Data.MySqlClient.Driver.Open()
+   at MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   at MySql.Data.MySqlClient.MySqlConnection.Open()
+   at Quartz.Impl.AdoJobStore.JobStoreSupport.GetConnection()]
+2020-04-05 23:10:22.6406|INFO|Quartz.Core.QuartzScheduler|Scheduler TaskScheduler_$_bin637216962172624096 started. 
+2020-04-05 23:10:22.6695|INFO|Quartz.Impl.AdoJobStore.JobStoreTX|ConnectionAndTransactionHolder passed to RollbackConnection was null, ignoring 
+2020-04-05 23:10:22.6695|ERROR|Quartz.Core.ErrorLogger|An error occurred while scanning for the next trigger to fire. Quartz.JobPersistenceException: Failed to obtain DB connection from data source 'myDS': MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host 'localhost' for user 'root' using method 'mysql_native_password' failed with message: Unknown database 'quartz'
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown database 'quartz'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.AuthenticationFailed(Exception ex)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.Authenticate(Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Authenticate(String authMethod, Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Open()
+   at MySql.Data.MySqlClient.Driver.Open()
+   at MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   at MySql.Data.MySqlClient.MySqlConnection.Open()
+   at Quartz.Impl.AdoJobStore.JobStoreSupport.GetConnection()
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host 'localhost' for user 'root' using method 'mysql_native_password' failed with message: Unknown database 'quartz'
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown database 'quartz'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.AuthenticationFailed(Exception ex)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.Authenticate(Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Authenticate(String authMethod, Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Open()
+   at MySql.Data.MySqlClient.Driver.Open()
+   at MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   at MySql.Data.MySqlClient.MySqlConnection.Open()
+   at Quartz.Impl.AdoJobStore.JobStoreSupport.GetConnection()
+   --- End of inner exception stack trace ---
+   at Quartz.Impl.AdoJobStore.JobStoreSupport.GetConnection()
+   at Quartz.Impl.AdoJobStore.JobStoreTX.GetNonManagedTXConnection()
+   at Quartz.Impl.AdoJobStore.JobStoreSupport.ExecuteInNonManagedTXLock[T](String lockName, Func`2 txCallback, Func`3 txValidator, CancellationToken cancellationToken)
+   at Quartz.Impl.AdoJobStore.JobStoreSupport.ExecuteInNonManagedTXLock[T](String lockName, Func`2 txCallback, Func`3 txValidator, CancellationToken cancellationToken)
+   at Quartz.Impl.AdoJobStore.JobStoreSupport.AcquireNextTriggers(DateTimeOffset noLaterThan, Int32 maxCount, TimeSpan timeWindow, CancellationToken cancellationToken)
+   at Quartz.Core.QuartzSchedulerThread.Run() [See nested exception: MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host 'localhost' for user 'root' using method 'mysql_native_password' failed with message: Unknown database 'quartz'
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown database 'quartz'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.AuthenticationFailed(Exception ex)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.Authenticate(Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Authenticate(String authMethod, Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Open()
+   at MySql.Data.MySqlClient.Driver.Open()
+   at MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   at MySql.Data.MySqlClient.MySqlConnection.Open()
+   at Quartz.Impl.AdoJobStore.JobStoreSupport.GetConnection()]
+2020-04-05 23:10:22.7837|ERROR|Quartz.Impl.AdoJobStore.MisfireHandler|Error handling misfires: Failed to obtain DB connection from data source 'myDS': MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host 'localhost' for user 'root' using method 'mysql_native_password' failed with message: Unknown database 'quartz'
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown database 'quartz'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.AuthenticationFailed(Exception ex)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.Authenticate(Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Authenticate(String authMethod, Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Open()
+   at MySql.Data.MySqlClient.Driver.Open()
+   at MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   at MySql.Data.MySqlClient.MySqlConnection.Open()
+   at Quartz.Impl.AdoJobStore.JobStoreSupport.GetConnection() Quartz.JobPersistenceException: Failed to obtain DB connection from data source 'myDS': MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host 'localhost' for user 'root' using method 'mysql_native_password' failed with message: Unknown database 'quartz'
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown database 'quartz'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.AuthenticationFailed(Exception ex)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.Authenticate(Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Authenticate(String authMethod, Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Open()
+   at MySql.Data.MySqlClient.Driver.Open()
+   at MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   at MySql.Data.MySqlClient.MySqlConnection.Open()
+   at Quartz.Impl.AdoJobStore.JobStoreSupport.GetConnection()
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host 'localhost' for user 'root' using method 'mysql_native_password' failed with message: Unknown database 'quartz'
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown database 'quartz'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.AuthenticationFailed(Exception ex)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.Authenticate(Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Authenticate(String authMethod, Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Open()
+   at MySql.Data.MySqlClient.Driver.Open()
+   at MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   at MySql.Data.MySqlClient.MySqlConnection.Open()
+   at Quartz.Impl.AdoJobStore.JobStoreSupport.GetConnection()
+   --- End of inner exception stack trace ---
+   at Quartz.Impl.AdoJobStore.JobStoreSupport.GetConnection()
+   at Quartz.Impl.AdoJobStore.JobStoreTX.GetNonManagedTXConnection()
+   at Quartz.Impl.AdoJobStore.JobStoreSupport.DoRecoverMisfires(Guid requestorId, CancellationToken cancellationToken)
+   at Quartz.Impl.AdoJobStore.MisfireHandler.Manage() [See nested exception: MySql.Data.MySqlClient.MySqlException (0x80004005): Authentication to host 'localhost' for user 'root' using method 'mysql_native_password' failed with message: Unknown database 'quartz'
+ ---> MySql.Data.MySqlClient.MySqlException (0x80004005): Unknown database 'quartz'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   at MySql.Data.MySqlClient.NativeDriver.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.AuthenticationFailed(Exception ex)
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.ReadPacket()
+   at MySql.Data.MySqlClient.Authentication.MySqlAuthenticationPlugin.Authenticate(Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Authenticate(String authMethod, Boolean reset)
+   at MySql.Data.MySqlClient.NativeDriver.Open()
+   at MySql.Data.MySqlClient.Driver.Open()
+   at MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   at MySql.Data.MySqlClient.MySqlConnection.Open()
+   at Quartz.Impl.AdoJobStore.JobStoreSupport.GetConnection()]
+2020-04-05 23:10:23.1483|INFO|Microsoft.Hosting.Lifetime|Now listening on: http://localhost:5001 
+2020-04-05 23:10:23.1483|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2020-04-05 23:10:23.1483|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2020-04-05 23:10:23.1483|INFO|Microsoft.Hosting.Lifetime|Content root path: F:\学习Demo\ASP.NET Core\FastNet.TaskManager\FastNet.TaskManager 
