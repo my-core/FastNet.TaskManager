@@ -36,38 +36,46 @@ namespace FastNet.TaskManager.QuartzNet
             //4-也可以尝试使用/不使用已注册的shutdown-hook插件来运行它调度程序。（quartz.plugins.management.ShutdownHookPlugin）。
             //5-注意：切勿在单独的计算机上运行群集，除非它们在不同的计算机上运行使用某种形式的时间同步服务（守护程序）来同步时钟。
 
-            //配置持久化-集群
-            NameValueCollection properties = new NameValueCollection();
-            //开启集群
-            properties["quartz.jobStore.clustered"] = string.IsNullOrEmpty(_quartzOptions.Clustered) ? "false" : _quartzOptions.Clustered;
-            //调度标识名,集群中每一个实例都必须使用相同的名称
-            properties["quartz.scheduler.instanceName"] = string.IsNullOrEmpty(_quartzOptions.InstanceName) ? "TaskScheduler" : _quartzOptions.InstanceName;
-            //ID设置为自动获取 每一个必须不同
-            properties["quartz.scheduler.instanceId"] = string.IsNullOrEmpty(_quartzOptions.InstanceId) ? "AUTO" : _quartzOptions.InstanceId;
-            //这个时间大于10000（10秒）会导致WithMisfireHandlingInstructionDoNothing不生效。
-            properties["quartz.jobStore.misfireThreshold"] = "5000";
-            //properties["quartz.threadPool.type"] = "Quartz.Simpl.SimpleThreadPool, Quartz";
-            //线程池个数
-            properties["quartz.threadPool.threadCount"] = string.IsNullOrEmpty(_quartzOptions.ThreadCount) ? "20" : _quartzOptions.ThreadCount;
-            //存储类型(数据保存方式为持久化)
-            properties["quartz.jobStore.type"] = string.IsNullOrEmpty(_quartzOptions.JobStoreType) ? "Quartz.Impl.AdoJobStore.JobStoreTX, Quartz" : _quartzOptions.JobStoreType;
-            //设置为TRUE不会出现序列化非字符串类到 BLOB 时产生的类版本问题
-            //properties["quartz.jobStore.useProperties"] = "true";
-            //数据库别名(任意)
-            properties["quartz.jobStore.dataSource"] = "myDS";
-            //表明前缀
-            properties["quartz.jobStore.tablePrefix"] = string.IsNullOrEmpty(_quartzOptions.TablePrefix) ? "QRTZ_" : _quartzOptions.TablePrefix;
-            //使用Sqlserver的Ado操作代理类
-            properties["quartz.jobStore.driverDelegateType"] = string.IsNullOrEmpty(_quartzOptions.DriverDelegateType) ? "Quartz.Impl.AdoJobStore.SqlServerDelegate, Quartz" : _quartzOptions.DriverDelegateType;
-            //连接字符串
-            properties["quartz.dataSource.myDS.connectionString"] = _quartzOptions.ConnectionString;
-            //sqlserver版本
-            properties["quartz.dataSource.myDS.provider"] = string.IsNullOrEmpty(_quartzOptions.Provider) ? "SqlServer" : _quartzOptions.Provider;
-            //序列化类型(json)
-            properties["quartz.serializer.type"] = string.IsNullOrEmpty(_quartzOptions.SerializerType) ? "json" : _quartzOptions.SerializerType;
+            if (_quartzOptions.Clustered)
+            {
+                //配置持久化-集群
+                NameValueCollection properties = new NameValueCollection();
+                //开启集群
+                properties["quartz.jobStore.clustered"] = _quartzOptions.Clustered ? "true" : "false";
+                //调度标识名,集群中每一个实例都必须使用相同的名称
+                properties["quartz.scheduler.instanceName"] = string.IsNullOrEmpty(_quartzOptions.InstanceName) ? "TaskScheduler" : _quartzOptions.InstanceName;
+                //ID设置为自动获取 每一个必须不同
+                properties["quartz.scheduler.instanceId"] = string.IsNullOrEmpty(_quartzOptions.InstanceId) ? "AUTO" : _quartzOptions.InstanceId;
+                //这个时间大于10000（10秒）会导致WithMisfireHandlingInstructionDoNothing不生效。
+                properties["quartz.jobStore.misfireThreshold"] = "5000";
+                //properties["quartz.threadPool.type"] = "Quartz.Simpl.SimpleThreadPool, Quartz";
+                //线程池个数
+                properties["quartz.threadPool.threadCount"] = string.IsNullOrEmpty(_quartzOptions.ThreadCount) ? "20" : _quartzOptions.ThreadCount;
+                //存储类型(数据保存方式为持久化)
+                properties["quartz.jobStore.type"] = string.IsNullOrEmpty(_quartzOptions.JobStoreType) ? "Quartz.Impl.AdoJobStore.JobStoreTX, Quartz" : _quartzOptions.JobStoreType;
+                //设置为TRUE不会出现序列化非字符串类到 BLOB 时产生的类版本问题
+                //properties["quartz.jobStore.useProperties"] = "true";
+                //数据库别名(任意)
+                properties["quartz.jobStore.dataSource"] = "myDS";
+                //表明前缀
+                properties["quartz.jobStore.tablePrefix"] = string.IsNullOrEmpty(_quartzOptions.TablePrefix) ? "QRTZ_" : _quartzOptions.TablePrefix;
+                //使用Sqlserver的Ado操作代理类
+                properties["quartz.jobStore.driverDelegateType"] = string.IsNullOrEmpty(_quartzOptions.DriverDelegateType) ? "Quartz.Impl.AdoJobStore.SqlServerDelegate, Quartz" : _quartzOptions.DriverDelegateType;
+                //连接字符串
+                properties["quartz.dataSource.myDS.connectionString"] = _quartzOptions.ConnectionString;
+                //sqlserver版本
+                properties["quartz.dataSource.myDS.provider"] = string.IsNullOrEmpty(_quartzOptions.Provider) ? "SqlServer" : _quartzOptions.Provider;
+                //序列化类型(json)
+                properties["quartz.serializer.type"] = string.IsNullOrEmpty(_quartzOptions.SerializerType) ? "json" : _quartzOptions.SerializerType;
 
-            //创建作业调度池
-            _scheduler = new StdSchedulerFactory(properties).GetScheduler().Result;
+                //创建作业调度池
+                _scheduler = new StdSchedulerFactory(properties).GetScheduler().Result;
+            }
+            else
+            {
+                //创建作业调度池
+                _scheduler = new StdSchedulerFactory().GetScheduler().Result;
+            }            
             //实现Job的注入(quartz默认情况下，它仅支持无参数构造函数)
             _scheduler.JobFactory = new ServiceCollectionJobFactory(serviceProvider);
         }

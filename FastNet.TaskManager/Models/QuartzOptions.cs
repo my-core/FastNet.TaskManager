@@ -10,7 +10,7 @@ namespace FastNet.TaskManager.Models
         /// <summary>
         /// 开启集群
         /// </summary>
-        public string Clustered { get; set; }
+        public bool Clustered { get; set; }
         /// <summary>
         /// 调度标识名,集群中每一个实例都必须使用相同的名称
         /// </summary>
