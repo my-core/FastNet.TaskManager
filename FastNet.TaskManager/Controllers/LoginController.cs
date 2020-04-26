@@ -34,7 +34,7 @@ namespace FastNet.TaskManager.Controllers
         public IActionResult Index(string adminName, string password)
         {
             AjaxResult ajaxResult = new AjaxResult { IsOk = false, Msg = "用户名/密码不正确" };
-            if (adminName == "admin" && password == "123456")
+            if (adminName == "admin" && password == "Dev@123456")
             {
                 var claimIdentity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
                 claimIdentity.AddClaim(new Claim(ClaimTypes.NameIdentifier, "admin"));

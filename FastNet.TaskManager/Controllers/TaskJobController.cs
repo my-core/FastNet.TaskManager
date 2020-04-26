@@ -141,13 +141,13 @@ namespace FastNet.TaskManager.Controllers
         /// <param name="info"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult> Delete(int jobID)
+        public async Task<ActionResult> Delete(int id)
         {
             AjaxResult ajaxResult = new AjaxResult();
-            var model = _yunYingRepository.GetModel<TaskJobInfo>(new { JobID = jobID });
+            var model = _yunYingRepository.GetModel<TaskJobInfo>(new { JobID = id });
             if (model != null)
             {
-                var flag = _yunYingRepository.Delete<TaskJobInfo>(new { JobID = jobID }) > 0;
+                var flag = _yunYingRepository.Delete<TaskJobInfo>(new { JobID = id }) > 0;
                 if (flag)
                 {
                     await _quartzManager.DeleteJob(model.JobName);

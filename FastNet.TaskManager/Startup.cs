@@ -40,17 +40,17 @@ namespace FastNet.TaskManager.Manage
             services.AddTransient<TaskJob>();
             services.AddSingleton<QuartzManager>();
             services.AddHostedService<QuartzService>();
-            
+
             //添加认证
-            //services.AddAuthentication(options =>
-            //{
-            //    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            //})
-            //.AddCookie(options =>
-            //{
-            //    options.LoginPath = "/Login";
-            //    options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
-            //});
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            })
+            .AddCookie(options =>
+            {
+                options.LoginPath = "/Login";
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+            });
 
             services.AddControllersWithViews()//全局配置Json序列化处理
             .AddNewtonsoftJson(options =>
@@ -82,8 +82,8 @@ namespace FastNet.TaskManager.Manage
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
-            //app.UseAuthentication();
-
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
